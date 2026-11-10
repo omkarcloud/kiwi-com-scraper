@@ -1,0 +1,10 @@
+services:
+  kiwi-com-scraper:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      # Optional — Kiwi.com answers cloud servers too, so leave this unset.
+      # - KIWI_COM_PROXY=http://user:pass@host:port
