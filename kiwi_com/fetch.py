@@ -45,6 +45,7 @@ import config
 import egress
 from scraper_errors import BadRequest, Blocked, NotFound, UpstreamError
 from kiwi_com.refs import API, SITE
+from scraper_utils import retry, sessions
 
 IMPERSONATE = "chrome"
 GRAPHQL_URL = API + "/umbrella/v2/graphql"
@@ -84,43 +85,20 @@ _local = threading.local()
 
 
 def _session():
-    sess = getattr(_local, "session", None)
-    if sess is None:
-        from curl_cffi import requests as curl_requests
-        sess = curl_requests.Session(impersonate=IMPERSONATE)
-        proxy = config.kiwi_com_proxy()
-        if proxy:
-            sess.proxies = {"http": proxy, "https": proxy}
-        sess.headers["accept-language"] = egress.accept_language(proxy)
-        _local.session = sess
-    return sess
+    return sessions.thread_session(_local, lambda: sessions.curl_session(
+        IMPERSONATE, proxy_fn=config.kiwi_com_proxy, accept_language=egress.accept_language))
 
 
 def _drop_session():
     """Close the thread's session so a poisoned keep-alive connection (and
     its exit) dies; the next call opens a fresh one."""
-    sess = getattr(_local, "session", None)
-    _local.session = None
-    if sess is not None:
-        try:
-            sess.close()
-        except Exception:
-            pass
+    sessions.drop(_local)
 
 
 def _retrying(fn):
     """Run fn() under the shared retry policy (KiwiComUpstreamError only;
     NotFound / BadRequest surface immediately)."""
-    last = None
-    for attempt in range(1, config.MAX_RETRIES + 1):
-        try:
-            return fn()
-        except KiwiComUpstreamError as e:
-            last = e
-            _drop_session()
-            if attempt < config.MAX_RETRIES:
-                time.sleep(config.RETRY_BACKOFF * attempt)
-    raise last
+    return retry.run(fn, config, KiwiComUpstreamError, lambda e: _drop_session())
 
 
 def _classify(resp, label):
