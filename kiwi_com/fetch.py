@@ -157,13 +157,13 @@ SECTOR = f"""{{ id duration carriers {CARRIER}
   stopover {{ nightsCount duration isStationChange arrival {STATION} departure {STATION} }}
   sectorSegments {{ guarantee segment {SEGMENT} layover {{ id duration guarantee isStationChange isBaggageRecheck isWalkingDistance transferDuration transferType }} }} }}"""
 TIER = "{ tierPrice { amount currency { code } } included bags { weight { value unit } dimensionsSum { value unit } height { value unit } length { value unit } width { value unit } } }"
-BAGS = f"{{ hasBagsSupported hasNoCheckedBags includedHandBags includedCheckedBags includedPersonalItem checkedBagTiers {TIER} handBagTiers {TIER} personalItemTiers {TIER} }}"
+BAGS = f"{{ hasNoCheckedBags includedHandBags includedCheckedBags includedPersonalItem checkedBagTiers {TIER} handBagTiers {TIER} personalItemTiers {TIER} }}"
 BOOKING = f"""{{ edges {{ node {{ token bookingUrl price {MONEY} priceEur {{ amount }} usRulesApply
-  itineraryProvider {{ id name code subprovider providerCategory contentProvider {{ code name }} hasHighProbabilityOfPriceChange }} }} }} }}"""
+  itineraryProvider {{ id name code subprovider contentProvider {{ code name }} }} }} }} }}"""
 COMMON = f"""id shareId duration pnrCount technicalStops isTravelHack isRyanair isVanilla cabinClasses partnerships
   price {MONEY} priceEur {{ amount }} paidGuaranteePrice {MONEY}
   extendedFareOptionsPricing {{ standardFarePrice {MONEY} flexiFarePrice {MONEY} }}
-  provider {{ id name code subprovider providerCategory contentProvider {{ code name }} hasHighProbabilityOfPriceChange }}
+  provider {{ id name code subprovider contentProvider {{ code name }} }}
   bagsInfo {BAGS} travelHack {{ isTrueHiddenCity isVirtualInterlining isThrowawayTicket }}
   highlights {{ isBest isFastest isCheapest }}
   bookingOptions {BOOKING}"""
