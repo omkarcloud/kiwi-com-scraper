@@ -10,7 +10,8 @@ ONE param per input (tripadvisor QueryOrIdField convention, never a sibling
                                    with that slug, or a free-text place name
     itinerary                      a share id, an itinerary id
                                    (ItineraryOneWay:…) or a kiwi.com link
-                                   carrying ?shareId=
+                                   carrying the share id (?sharedItineraryId=,
+                                   ?prebooking= or ?shareId=)
 
 Dates are YYYY-MM-DD, today or later. Money bounds are in the request's
 `currency`. Every endpoint takes `currency` (ISO 4217, default USD),
@@ -292,7 +293,8 @@ class MultiCitySearchSchema(_FiltersSchema):
 class ItineraryDetailsSchema(_PassengersSchema):
     itinerary = ItineraryRefField(metadata={
         "description": "the itinerary `id` (Kiwi share id) from a search, an ItineraryOneWay:… id, "
-                       "or a kiwi.com link carrying ?shareId="})
+                       "or a kiwi.com link carrying the share id (a result's `share_link`, kiwi.com's "
+                       "?sharedItineraryId= share link)"})
 
 
 class ExploreSchema(_PassengersSchema):

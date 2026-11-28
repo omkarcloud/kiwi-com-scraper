@@ -124,6 +124,104 @@ def test_booking_link():
     assert refs.booking_link(None) is None
 
 
+# ---- links to kiwi.com (Jane, chat 627, 2026-11-28) -----------------------------------------
+
+JANE_SHARE_ID = ("eyJyIjoiUks6NTk2ODpCRlM6MTc5ODMxNDYwMDpFREk6MTc5ODMxNzkwMDplY29ub215OkZhbHNlOjo6Ukt8Uks6MTc5OkVESToxNzk4"
+                 "ODE5ODAwOkJGUzoxNzk4ODIyODAwOmVjb25vbXk6RmFsc2U6OjpSSyIsImkiOlsiMTFmMTAwOGU1MTRkMDAwMGQwNDNmN2NkXzAiLCIwMDhl"
+                 "MTFmMTUxNTMwMDAwOTIzMjY5OGVfMCJdLCJ0aGMiOjAsInRhdCI6MCwidmkiOjAsInQiOiJSVCJ9")
+# The link kiwi.com opened on 2026-11-28 in a fresh browser on the trip-details
+# dialog of RK5968 (26 Dec, 19:50) / RK179 (1 Jan, 16:10), "Tickets starting at £35".
+JANE_SHARE_LINK = ("https://www.kiwi.com/en/search/results/belfast_gb/edinburgh_gb/2026-12-26/2027-01-01/"
+                   f"?sharedItineraryId={JANE_SHARE_ID}&prebookingShared=1&currency=gbp")
+
+
+def test_round_trip_share_link_opens_janes_itinerary():
+    """Before 2026-11-28 a result had no link that outlives its booking
+    token, and the spec offered /en/booking/?shareId=<id>, which kiwi.com
+    answers with "Hmm, this link isn't right"."""
+    raw = fixture("search_round_trip_bfs_edi.json")
+    it = P.parse_itineraries(raw)["results"][0]
+    assert it["id"] == JANE_SHARE_ID and it["price"] == {"amount": 35, "currency": "GBP"}
+    assert [s["flight_number"] for s in it["outbound"]["segments"] + it["inbound"]["segments"]] == ["RK5968", "RK179"]
+    assert it["share_link"] == JANE_SHARE_LINK
+    # the booking link stays the token link the site's own "Continue with Basic" carries
+    assert it["booking_link"].startswith("https://www.kiwi.com/en/booking/?direct=true&locale=en&currency=gbp"
+                                         "&passengers=1-0-0&token=")
+    assert "searchType=return" in it["booking_link"]
+    assert "shareId=" not in it["booking_link"]
+    # the share link is a details reference too
+    assert refs.resolve_itinerary(it["share_link"]) == JANE_SHARE_ID
+
+
+def test_one_way_share_link(one_way):
+    it = P.parse_itineraries(one_way)["results"][0]
+    assert it["share_link"] == ("https://www.kiwi.com/en/search/results/london_gb/new-york-city_ny_us/2026-12-10/"
+                                f"no-return/?sharedItineraryId={it['id']}&prebookingShared=1&currency=usd")
+
+
+def test_details_share_link():
+    rt = P.parse_itineraries(fixture("details_round_trip_shared.json"))["shared_itinerary"]
+    assert rt["share_link"].startswith("https://www.kiwi.com/en/search/results/london_gb/new-york-city_ny_us/"
+                                       "2026-12-10/2026-12-17/?sharedItineraryId=")
+    assert refs.resolve_itinerary(rt["share_link"]) == rt["id"]
+
+
+def test_share_link_repeats_the_search():
+    """Locale path, currency, passengers and cabin come from the itinerary's
+    booking link; bags never go in (kiwi.com then opens no dialog)."""
+    booking = ("https://www.kiwi.com/de/booking/?direct=true&locale=de&currency=eur&passengers=2-1-0&token=x"
+               "&searchType=return&searchBags=1.1_1.1-1.1")
+    link = refs.share_link("abc=", "City:belfast_gb", "City:edinburgh_gb", "2026-12-26", "2027-01-01", booking,
+                           "business")
+    assert link == ("https://www.kiwi.com/de/search/results/belfast_gb/edinburgh_gb/2026-12-26/2027-01-01/"
+                    "?sharedItineraryId=abc=&prebookingShared=1&currency=eur&adults=2&children=1"
+                    "&cabinClass=BUSINESS-false")
+    assert "bags" not in link
+    assert refs.share_link("abc", "City:a_gb", "City:b_gb", "2026-12-26").endswith(
+        "/en/search/results/a_gb/b_gb/2026-12-26/no-return/?sharedItineraryId=abc&prebookingShared=1")
+    # a station id or a missing place / date gives no link rather than a wrong one
+    assert refs.share_link("abc", "Station:airport:BFS", "City:b_gb", "2026-12-26") is None
+    assert refs.share_link("abc", None, "City:b_gb", "2026-12-26") is None
+    assert refs.share_link(None, "City:a_gb", "City:b_gb", "2026-12-26") is None
+    assert P.parse_itinerary({"__typename": "ItineraryMulticity", "shareId": "x", "sectors": []})["share_link"] is None
+    assert P.parse_itinerary({"__typename": "ItineraryOneWay", "shareId": "x"})["share_link"] is None
+
+
+def test_share_link_names_the_cabin_of_the_itinerary(one_way):
+    """Without cabinClass kiwi.com opens the shared flights in economy (the
+    $594 for $1,412 in refs.share_link). An itinerary names first class
+    "first_class" (the API's FIRST_CLASS; live 2026-11-28, LON -> DXB first:
+    cabin_classes ["first_class"]): ranked as "first" it matched nothing and
+    every first-class share link went out without its cabin."""
+    for token, url_value in (("FIRST_CLASS", "FIRST_CLASS-false"), ("BUSINESS", "BUSINESS-false"),
+                             ("PREMIUM_ECONOMY", "PREMIUM_ECONOMY-false")):
+        raw = json.loads(json.dumps(one_way["itineraries"][0]))
+        raw["cabinClasses"] = [token]
+        it = P.parse_itinerary(raw)
+        assert it["cabin_classes"] == [token.lower()]
+        assert it["share_link"].endswith(f"&cabinClass={url_value}")
+    assert "cabinClass" not in P.parse_itinerary(one_way["itineraries"][0])["share_link"]   # economy: the default
+    # the cabin under our own param name still works for a direct call
+    assert refs.share_link("abc", "City:a_gb", "City:b_gb", "2026-12-26", cabin_class="first").endswith(
+        "&cabinClass=FIRST_CLASS-false")
+
+
+def test_resolve_itinerary_kiwi_share_links():
+    """kiwi.com's own links carry the share id as sharedItineraryId (its Share
+    button) or prebooking (a picked result); before 2026-11-28 only ?shareId=
+    was read and both were refused."""
+    site_share = ("https://www.kiwi.com/en/search/results/belfast-united-kingdom/edinburgh-united-kingdom/2026-12-26/"
+                  f"2027-01-01/?sortBy=price&shared=1&utm_source=product&sharedItineraryId={JANE_SHARE_ID}"
+                  "&sharePrice=%C2%A335&shareDestId=edinburgh_gb&currency=inr&prebookingShared=1")
+    picked = ("https://www.kiwi.com/en/search/results/belfast-united-kingdom/edinburgh-united-kingdom/2026-12-26/"
+              f"2027-01-01/?sortBy=price&prebooking={JANE_SHARE_ID}")
+    for link in (JANE_SHARE_LINK, site_share, picked):
+        assert refs.resolve_itinerary(link) == JANE_SHARE_ID
+    assert refs.decode_itinerary(JANE_SHARE_ID)["legs"] == [
+        {"origin": "BFS", "destination": "EDI", "date": "2026-12-26"},
+        {"origin": "EDI", "destination": "BFS", "date": "2027-01-01"}]
+
+
 # ---- itineraries ---------------------------------------------------------------------------
 
 def test_parse_one_way(one_way):

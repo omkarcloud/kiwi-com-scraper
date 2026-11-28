@@ -271,8 +271,8 @@ def _search_one_way(**data):
 def search_one_way(**data):
     """One-way flight search: every itinerary with price, fare options,
     segments, airlines, layovers, bag allowances and fees, seats left,
-    self-transfer and hidden-city flags and the kiwi.com booking link, plus
-    the result-set facets (price histogram, stops, airlines)."""
+    self-transfer and hidden-city flags and the kiwi.com booking and share
+    links, plus the result-set facets (price histogram, stops, airlines)."""
     return cached_call("kiwi_com.search_one_way", data, _search_one_way, ttl.SEARCH_CACHE)
 
 
@@ -295,8 +295,8 @@ def _search_round_trip(**data):
 
 def search_round_trip(**data):
     """Round-trip flight search: outbound and inbound sectors per itinerary
-    with price, segments, layovers, bags, stay length and the booking link,
-    for exact dates, flexible windows or a nights range."""
+    with price, segments, layovers, bags, stay length and the booking and
+    share links, for exact dates, flexible windows or a nights range."""
     return cached_call("kiwi_com.search_round_trip", data, _search_round_trip, ttl.SEARCH_CACHE)
 
 
@@ -330,7 +330,8 @@ def _search_multi_city(**data):
 
 def search_multi_city(**data):
     """Multi-city flight search: 2-6 legs, each with its own itinerary list
-    (price, segments, layovers, bags, booking link), plus the cheapest total."""
+    (price, segments, layovers, bags, booking and share links), plus the
+    cheapest total."""
     return cached_call("kiwi_com.search_multi_city", data, _search_multi_city, ttl.SEARCH_CACHE)
 
 
@@ -388,9 +389,9 @@ def _station_id(code):
 
 
 def itinerary_details(**data):
-    """One itinerary by the id a search returned (or a kiwi.com share link),
-    re-priced live: price, fares, every segment and layover, bag tiers and
-    the booking link."""
+    """One itinerary by the id a search returned (or its kiwi.com share
+    link), re-priced live: price, fares, every segment and layover, bag
+    tiers, a fresh booking link and the share link."""
     return cached_call("kiwi_com.itinerary_details", data, _itinerary_details, ttl.DETAILS_CACHE)
 
 

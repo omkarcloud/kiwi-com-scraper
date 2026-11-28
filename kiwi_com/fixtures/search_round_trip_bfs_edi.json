@@ -1,0 +1,586 @@
+{
+ "server": {
+  "requestId": "245c350ffe0649799b58ff528e50783e"
+ },
+ "metadata": {
+  "itinerariesCount": 50,
+  "hasMorePending": false,
+  "sharedItinerary": null
+ },
+ "itineraries": [
+  {
+   "__typename": "ItineraryReturn",
+   "legacyId": "11f1008e514d0000d043f7cd_0-008e11f1515300009232698e_0",
+   "lastAvailable": {
+    "seatsLeft": null
+   },
+   "id": "ItineraryReturn:eyJwcm92aWRlcnMiOiJLSVdJLUJBU0lDOktJV0kiLCJyb3V0ZV9kYXRhIjoiUks6NTk2ODpCRlM6MTc5ODMxNDYwMDpFREk6MTc5ODMxNzkwMDplY29ub215OkZhbHNlOjo6Ukt8Uks6MTc5OkVESToxNzk4ODE5ODAwOkJGUzoxNzk4ODIyODAwOmVjb25vbXk6RmFsc2U6OjpSSyIsInByaWNlIjoiMzUifQ==",
+   "shareId": "eyJyIjoiUks6NTk2ODpCRlM6MTc5ODMxNDYwMDpFREk6MTc5ODMxNzkwMDplY29ub215OkZhbHNlOjo6Ukt8Uks6MTc5OkVESToxNzk4ODE5ODAwOkJGUzoxNzk4ODIyODAwOmVjb25vbXk6RmFsc2U6OjpSSyIsImkiOlsiMTFmMTAwOGU1MTRkMDAwMGQwNDNmN2NkXzAiLCIwMDhlMTFmMTUxNTMwMDAwOTIzMjY5OGVfMCJdLCJ0aGMiOjAsInRhdCI6MCwidmkiOjAsInQiOiJSVCJ9",
+   "duration": 6300,
+   "pnrCount": 2,
+   "technicalStops": null,
+   "isTravelHack": false,
+   "isRyanair": true,
+   "isVanilla": true,
+   "cabinClasses": [
+    "ECONOMY"
+   ],
+   "partnerships": [
+    "ryanair"
+   ],
+   "price": {
+    "amount": "35",
+    "roundedAmount": "35",
+    "formattedValue": "\u00a335",
+    "currency": {
+     "code": "GBP"
+    },
+    "priceBeforeDiscount": "35"
+   },
+   "priceEur": {
+    "amount": "41.927265"
+   },
+   "paidGuaranteePrice": {
+    "amount": "12",
+    "roundedAmount": "12",
+    "formattedValue": "\u00a312",
+    "currency": {
+     "code": "GBP"
+    },
+    "priceBeforeDiscount": "12"
+   },
+   "extendedFareOptionsPricing": {
+    "standardFarePrice": {
+     "amount": "45",
+     "roundedAmount": "45",
+     "formattedValue": "\u00a345",
+     "currency": {
+      "code": "GBP"
+     },
+     "priceBeforeDiscount": "45"
+    },
+    "flexiFarePrice": {
+     "amount": "55",
+     "roundedAmount": "55",
+     "formattedValue": "\u00a355",
+     "currency": {
+      "code": "GBP"
+     },
+     "priceBeforeDiscount": "55"
+    }
+   },
+   "provider": {
+    "id": "ItineraryProvider:KIWI-BASIC",
+    "name": "Kiwi.com",
+    "code": "KIWI-BASIC",
+    "subprovider": null,
+    "contentProvider": {
+     "code": "KIWI-BASIC",
+     "name": "kiwi.com"
+    }
+   },
+   "bagsInfo": {
+    "hasNoCheckedBags": false,
+    "includedHandBags": 0,
+    "includedCheckedBags": 0,
+    "includedPersonalItem": 1,
+    "checkedBagTiers": [
+     {
+      "tierPrice": {
+       "amount": "73.42",
+       "currency": {
+        "code": "GBP"
+       }
+      },
+      "included": 0,
+      "bags": [
+       {
+        "weight": {
+         "value": 20,
+         "unit": "KG"
+        },
+        "dimensionsSum": {
+         "value": 320,
+         "unit": "CM"
+        },
+        "height": {
+         "value": 120,
+         "unit": "CM"
+        },
+        "length": {
+         "value": 120,
+         "unit": "CM"
+        },
+        "width": {
+         "value": 80,
+         "unit": "CM"
+        }
+       }
+      ]
+     },
+     {
+      "tierPrice": {
+       "amount": "146.85",
+       "currency": {
+        "code": "GBP"
+       }
+      },
+      "included": 0,
+      "bags": [
+       {
+        "weight": {
+         "value": 20,
+         "unit": "KG"
+        },
+        "dimensionsSum": {
+         "value": 320,
+         "unit": "CM"
+        },
+        "height": {
+         "value": 120,
+         "unit": "CM"
+        },
+        "length": {
+         "value": 120,
+         "unit": "CM"
+        },
+        "width": {
+         "value": 80,
+         "unit": "CM"
+        }
+       }
+      ]
+     }
+    ],
+    "handBagTiers": [
+     {
+      "tierPrice": {
+       "amount": "43.0",
+       "currency": {
+        "code": "GBP"
+       }
+      },
+      "included": 0,
+      "bags": [
+       {
+        "weight": {
+         "value": 10,
+         "unit": "KG"
+        },
+        "dimensionsSum": {
+         "value": 115,
+         "unit": "CM"
+        },
+        "height": {
+         "value": 40,
+         "unit": "CM"
+        },
+        "length": {
+         "value": 55,
+         "unit": "CM"
+        },
+        "width": {
+         "value": 20,
+         "unit": "CM"
+        }
+       }
+      ]
+     }
+    ],
+    "personalItemTiers": [
+     {
+      "tierPrice": {
+       "amount": "0",
+       "currency": {
+        "code": "GBP"
+       }
+      },
+      "included": 1,
+      "bags": [
+       {
+        "weight": {
+         "value": 10,
+         "unit": "KG"
+        },
+        "dimensionsSum": {
+         "value": 90,
+         "unit": "CM"
+        },
+        "height": {
+         "value": 30,
+         "unit": "CM"
+        },
+        "length": {
+         "value": 40,
+         "unit": "CM"
+        },
+        "width": {
+         "value": 20,
+         "unit": "CM"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "travelHack": {
+    "isTrueHiddenCity": false,
+    "isVirtualInterlining": false,
+    "isThrowawayTicket": false
+   },
+   "highlights": {
+    "isBest": false,
+    "isFastest": false,
+    "isCheapest": false
+   },
+   "bookingOptions": {
+    "edges": [
+     {
+      "node": {
+       "token": "HcL8af0vtwQ6txNoIDZRQei4Qw4RkwXm1iLNp3nfojrF7llEcWbFKKVUCsiumOOTUE7u5-dndh6hzCeoxkDRpaW3K2hITULXMwvyr_2xAIDZ-Qb-EB1kf7WDTe88q2CvEPf822U8tyowKZDNl2jbIT9HuODvZmuTVB3G-o9Hcbg1e_hzYTbLqn42Phrx7KYRPbBeWRrn39wDdi1LcM_WxlhJ8SgNK77OSO24BswRTJgoLRLn7C2f1XNSBHavqvwvfNXZmrH2dqHxRwWcfmUW7yj30PdhGmCTESd-VQFG6GgiBIEJn3UuwIFUgVsFuvtVJ6MIUVzwqqus1mgGC2a3SNOjHBOeXeJHj-VrQMUTVqPCCOWm8-nREuEHyvOlZxEeJlcq04mLlydpyeaaMZVr_qwTSJcbb7SV51TBsYGQs8qZf_Y15ap-x-fgXt9ae_D1-roxADAFERrNwITk_Up7bjYGeWEPbboFQekJ2QVNEacxEnzGeiyxryDji5Ox5r_qCkykQPqHArMJMYOq3OTl61adrPhWr2R7VrGLu54cdkK8iAvKCy-3chUVIw036LMcW4woIjZrAWy0SdfdRPWCBguYNNXJ1H_g1XnJvF62H0Z5POHfvEvra2haJ2m1VSrqTc0dOuSgHmLdzJQHblL-rqBHNrnSKwWQOY_bYvH50s3LdUIJVF7_TebyNAe5R3z86E2LMEZdDhGHrKr57XwGz7Nibw6_ZtHo2teQ_XPQMPmufX9pDjEvTnpHvpZbZR8J8Iyj1dZ9DbVQJSEO9VIOWhSzE_ltB-sERKzC-QnBk_F7W5c_A8ZIA7Wn0wI8fPJqsX2M__J7NbfTgLDhYCE53uv6EhPd2vedMpfipMTgbZhXYcqQj5mp9i1CspM_b8EjHZOLbU4B4J0L57-PnkPV1_btCFqZPc98bICp-68MEafEK_fFkwZfAhubLeL4UMXpVFVtYdxSkyY2crLP9Ryp3YYmWZCAudWTOkCgJvKZeXrrYs1AgyXjcYaD0QoGDhMQLv9wZQpNUo9d97EmlmC_tA191AfTgByKd8tnGshqw6OfdWNJdP_7u1-sRuYCwb5LxHlm7KHOXwjsuyoGb4d1kxFw4BDvVLSMlBHv_CCtrIIy6j-zIA8CivqSEa78Z2EcaHvcCa0a5BzoFpP2BEpHtJrcFvygAIIPeZPkRxO6BE4gUDWuGlwGn-6Mxid6YP04ae08krCwjPJlFaddwo6E6Bw==",
+       "bookingUrl": "/en/booking/?direct=true&locale=en&currency=gbp&passengers=1-0-0&token=HcL8af0vtwQ6txNoIDZRQei4Qw4RkwXm1iLNp3nfojrF7llEcWbFKKVUCsiumOOTUE7u5-dndh6hzCeoxkDRpaW3K2hITULXMwvyr_2xAIDZ-Qb-EB1kf7WDTe88q2CvEPf822U8tyowKZDNl2jbIT9HuODvZmuTVB3G-o9Hcbg1e_hzYTbLqn42Phrx7KYRPbBeWRrn39wDdi1LcM_WxlhJ8SgNK77OSO24BswRTJgoLRLn7C2f1XNSBHavqvwvfNXZmrH2dqHxRwWcfmUW7yj30PdhGmCTESd-VQFG6GgiBIEJn3UuwIFUgVsFuvtVJ6MIUVzwqqus1mgGC2a3SNOjHBOeXeJHj-VrQMUTVqPCCOWm8-nREuEHyvOlZxEeJlcq04mLlydpyeaaMZVr_qwTSJcbb7SV51TBsYGQs8qZf_Y15ap-x-fgXt9ae_D1-roxADAFERrNwITk_Up7bjYGeWEPbboFQekJ2QVNEacxEnzGeiyxryDji5Ox5r_qCkykQPqHArMJMYOq3OTl61adrPhWr2R7VrGLu54cdkK8iAvKCy-3chUVIw036LMcW4woIjZrAWy0SdfdRPWCBguYNNXJ1H_g1XnJvF62H0Z5POHfvEvra2haJ2m1VSrqTc0dOuSgHmLdzJQHblL-rqBHNrnSKwWQOY_bYvH50s3LdUIJVF7_TebyNAe5R3z86E2LMEZdDhGHrKr57XwGz7Nibw6_ZtHo2teQ_XPQMPmufX9pDjEvTnpHvpZbZR8J8Iyj1dZ9DbVQJSEO9VIOWhSzE_ltB-sERKzC-QnBk_F7W5c_A8ZIA7Wn0wI8fPJqsX2M__J7NbfTgLDhYCE53uv6EhPd2vedMpfipMTgbZhXYcqQj5mp9i1CspM_b8EjHZOLbU4B4J0L57-PnkPV1_btCFqZPc98bICp-68MEafEK_fFkwZfAhubLeL4UMXpVFVtYdxSkyY2crLP9Ryp3YYmWZCAudWTOkCgJvKZeXrrYs1AgyXjcYaD0QoGDhMQLv9wZQpNUo9d97EmlmC_tA191AfTgByKd8tnGshqw6OfdWNJdP_7u1-sRuYCwb5LxHlm7KHOXwjsuyoGb4d1kxFw4BDvVLSMlBHv_CCtrIIy6j-zIA8CivqSEa78Z2EcaHvcCa0a5BzoFpP2BEpHtJrcFvygAIIPeZPkRxO6BE4gUDWuGlwGn-6Mxid6YP04ae08krCwjPJlFaddwo6E6Bw%3D%3D&searchType=return&searchBags=0.0",
+       "price": {
+        "amount": "35",
+        "roundedAmount": "35",
+        "formattedValue": "\u00a335",
+        "currency": {
+         "code": "GBP"
+        },
+        "priceBeforeDiscount": "35"
+       },
+       "priceEur": {
+        "amount": "41.93"
+       },
+       "usRulesApply": null,
+       "itineraryProvider": {
+        "id": "ItineraryProvider:KIWI-BASIC",
+        "name": "Kiwi.com",
+        "code": "KIWI-BASIC",
+        "subprovider": null,
+        "contentProvider": {
+         "code": "KIWI-BASIC",
+         "name": "kiwi.com"
+        }
+       }
+      }
+     },
+     {
+      "node": {
+       "token": "Hzwk-6Sh_1wYxe19Js-PZVXLW1DUSF-tp8GetcOhsXRaQ0PASvxNpRn_queL9VljxxwXlmZxSrqpjgSMMfVKxr8HbJjagg9fz2XqR-PPmKTyQwev4PrA7OELnzuQimtqXRppJUk6SpcodZksPNuKqYjjiw0EgWRNZY9AIbI7GHphtM9uJc4PD6MQ7cSQNjTsAHfVgjEH3JIK1c3ey_51LVHp5NoHiAyT5HaSeG_EdUsvj9rFqOLZchEZxJNSYTVqTp1bTaRVMkHvjMZA3bXiBOz8c2ujkggyE59fEr0AXoZcRAClJ_8d_-2TxrHqgNcu2jKhKE2pLnwaLx6YWjBNxKJhgxso-fN91mHAZIuDuxW6HvNEBBeVJQWHFzAZEAerFT3zFHnUphu6UoiLlCf6WdO_MhxdjumphLC7JgXO6wPAkCMXtZA4dwMggwi4qM9z1TmauFcNkqrZXIo1e6A1r-UmdtAKdPAXilPfKF1qrhJozdOXl1GVdvvPC1fF2v2J2O1tDcIm_taIYmQaTgDIhaJxkCNUPiI91-5JAB9MfBgDtUP4Jb2M8UTTRsftUitBhHh-ActAFTWNzfWEGSdA44_3KAFdyJNZFGOsYOOaxSxHBrgtBcq9WG2U9TW-fqhSD1-_MnUi9f0h18Zv7zszUiXcPo_0kCkHFh_-UsiCkhP5j0qRCdD4svR4UsSz-XygMDlEnQR8r4-FMvNv4vgBOFFfKVL7RIsHRMaJYhVVybI5VxRTfChZJMHvVW-k-GAzjNBjTNl4F77KNOg__oCABhM49FUozAlg72zOngZg8p25rFLjaTkiBIlNI94w2a64lsnuJqZ2nAHkl4BTutfqLslfxS1tufOnWGCU55J4Cq54TF4PSYW5FRLb2jM3ujK2iBb9ZIml4oY-bR6F4YADB3wn_XGDYgAYjEBXSOu5V1Cg3IIGw4G4pcbgg-vp9waRCjZbyJCmjOesU29iD3k1Mj7zqQ0lKtJ4qSy3LNk5LgL2sPcSHwFOgRkeEx08KovAPVCrLZR-7-WKimLkTE9j1WMWh3aE3YqVoCnpy0ZFm07wcfYShGLnYQMYHPtj5hrjutrkF_SgdGfqiVihs2dgjCfV6f2HY1Pg_hcWEsEB1S-8fE5PVUdu3BvhJH9qT4kNBi9IDSWZuE-WbOiVVMWFDaMQhJf6Q1cY3_VusxCP9mx-0zUZe_4NKB7gaReQv3Y1yMgnsVcv4OKoqnbfXOzAIrRqhfNQYKDJykUNFJEDP724=",
+       "bookingUrl": "/en/booking/?direct=true&locale=en&currency=gbp&passengers=1-0-0&token=Hzwk-6Sh_1wYxe19Js-PZVXLW1DUSF-tp8GetcOhsXRaQ0PASvxNpRn_queL9VljxxwXlmZxSrqpjgSMMfVKxr8HbJjagg9fz2XqR-PPmKTyQwev4PrA7OELnzuQimtqXRppJUk6SpcodZksPNuKqYjjiw0EgWRNZY9AIbI7GHphtM9uJc4PD6MQ7cSQNjTsAHfVgjEH3JIK1c3ey_51LVHp5NoHiAyT5HaSeG_EdUsvj9rFqOLZchEZxJNSYTVqTp1bTaRVMkHvjMZA3bXiBOz8c2ujkggyE59fEr0AXoZcRAClJ_8d_-2TxrHqgNcu2jKhKE2pLnwaLx6YWjBNxKJhgxso-fN91mHAZIuDuxW6HvNEBBeVJQWHFzAZEAerFT3zFHnUphu6UoiLlCf6WdO_MhxdjumphLC7JgXO6wPAkCMXtZA4dwMggwi4qM9z1TmauFcNkqrZXIo1e6A1r-UmdtAKdPAXilPfKF1qrhJozdOXl1GVdvvPC1fF2v2J2O1tDcIm_taIYmQaTgDIhaJxkCNUPiI91-5JAB9MfBgDtUP4Jb2M8UTTRsftUitBhHh-ActAFTWNzfWEGSdA44_3KAFdyJNZFGOsYOOaxSxHBrgtBcq9WG2U9TW-fqhSD1-_MnUi9f0h18Zv7zszUiXcPo_0kCkHFh_-UsiCkhP5j0qRCdD4svR4UsSz-XygMDlEnQR8r4-FMvNv4vgBOFFfKVL7RIsHRMaJYhVVybI5VxRTfChZJMHvVW-k-GAzjNBjTNl4F77KNOg__oCABhM49FUozAlg72zOngZg8p25rFLjaTkiBIlNI94w2a64lsnuJqZ2nAHkl4BTutfqLslfxS1tufOnWGCU55J4Cq54TF4PSYW5FRLb2jM3ujK2iBb9ZIml4oY-bR6F4YADB3wn_XGDYgAYjEBXSOu5V1Cg3IIGw4G4pcbgg-vp9waRCjZbyJCmjOesU29iD3k1Mj7zqQ0lKtJ4qSy3LNk5LgL2sPcSHwFOgRkeEx08KovAPVCrLZR-7-WKimLkTE9j1WMWh3aE3YqVoCnpy0ZFm07wcfYShGLnYQMYHPtj5hrjutrkF_SgdGfqiVihs2dgjCfV6f2HY1Pg_hcWEsEB1S-8fE5PVUdu3BvhJH9qT4kNBi9IDSWZuE-WbOiVVMWFDaMQhJf6Q1cY3_VusxCP9mx-0zUZe_4NKB7gaReQv3Y1yMgnsVcv4OKoqnbfXOzAIrRqhfNQYKDJykUNFJEDP724%3D&searchType=return&searchBags=0.0",
+       "price": {
+        "amount": "40.501194",
+        "roundedAmount": "41",
+        "formattedValue": "\u00a340.5",
+        "currency": {
+         "code": "GBP"
+        },
+        "priceBeforeDiscount": "40.501194"
+       },
+       "priceEur": {
+        "amount": "48.52"
+       },
+       "usRulesApply": null,
+       "itineraryProvider": {
+        "id": "ItineraryProvider:KIWI",
+        "name": "Kiwi.com",
+        "code": "KIWI",
+        "subprovider": null,
+        "contentProvider": {
+         "code": "KIWI",
+         "name": "kiwi.com"
+        }
+       }
+      }
+     }
+    ]
+   },
+   "outbound": {
+    "id": "Sector:b7b0761fe49926a4712b1975089cc32f122bae31~b7b0761fe49926a4712b1975089cc32f122bae31",
+    "duration": 3300,
+    "carriers": [
+     {
+      "id": "Carrier:189",
+      "name": "Ryanair UK",
+      "slug": "ryanair-uk",
+      "code": "RK",
+      "icao": "RUK",
+      "alliance": null,
+      "website": "https://www.ryanair.com/",
+      "logo": null
+     }
+    ],
+    "stopover": {
+     "nightsCount": 6,
+     "duration": 8365,
+     "isStationChange": false,
+     "arrival": {
+      "id": "Station:airport:EDI",
+      "legacyId": "EDI",
+      "name": "Edinburgh Airport",
+      "slug": "edinburgh-edinburgh-united-kingdom",
+      "code": "EDI",
+      "type": "AIRPORT",
+      "timezone": "Europe/London",
+      "gps": {
+       "lat": 55.95,
+       "lng": -3.3725
+      },
+      "city": {
+       "id": "City:edinburgh_gb",
+       "legacyId": "edinburgh_gb",
+       "name": "Edinburgh",
+       "slug": "edinburgh-united-kingdom",
+       "code": "EDI"
+      },
+      "country": {
+       "id": "Country:GB",
+       "code": "GB",
+       "name": "United Kingdom",
+       "slug": "united-kingdom"
+      }
+     },
+     "departure": {
+      "id": "Station:airport:EDI",
+      "legacyId": "EDI",
+      "name": "Edinburgh Airport",
+      "slug": "edinburgh-edinburgh-united-kingdom",
+      "code": "EDI",
+      "type": "AIRPORT",
+      "timezone": "Europe/London",
+      "gps": {
+       "lat": 55.95,
+       "lng": -3.3725
+      },
+      "city": {
+       "id": "City:edinburgh_gb",
+       "legacyId": "edinburgh_gb",
+       "name": "Edinburgh",
+       "slug": "edinburgh-united-kingdom",
+       "code": "EDI"
+      },
+      "country": {
+       "id": "Country:GB",
+       "code": "GB",
+       "name": "United Kingdom",
+       "slug": "united-kingdom"
+      }
+     }
+    },
+    "sectorSegments": [
+     {
+      "guarantee": null,
+      "segment": {
+       "id": "Segment:b7b0761fe49926a4712b1975089cc32f122bae31",
+       "code": "5968",
+       "type": "FLIGHT",
+       "duration": 3300,
+       "cabinClass": "ECONOMY",
+       "followingTechnicalStop": false,
+       "source": {
+        "station": {
+         "id": "Station:airport:BFS",
+         "legacyId": "BFS",
+         "name": "Belfast International",
+         "slug": "belfast-international-belfast-united-kingdom",
+         "code": "BFS",
+         "type": "AIRPORT",
+         "timezone": "Europe/London",
+         "gps": {
+          "lat": 54.6575,
+          "lng": -6.2158333
+         },
+         "city": {
+          "id": "City:belfast_gb",
+          "legacyId": "belfast_gb",
+          "name": "Belfast",
+          "slug": "belfast-united-kingdom",
+          "code": "BFS"
+         },
+         "country": {
+          "id": "Country:GB",
+          "code": "GB",
+          "name": "United Kingdom",
+          "slug": "united-kingdom"
+         }
+        },
+        "localTime": "2026-12-26T19:50:00",
+        "utcTime": "2026-12-26T19:50:00"
+       },
+       "destination": {
+        "station": {
+         "id": "Station:airport:EDI",
+         "legacyId": "EDI",
+         "name": "Edinburgh Airport",
+         "slug": "edinburgh-edinburgh-united-kingdom",
+         "code": "EDI",
+         "type": "AIRPORT",
+         "timezone": "Europe/London",
+         "gps": {
+          "lat": 55.95,
+          "lng": -3.3725
+         },
+         "city": {
+          "id": "City:edinburgh_gb",
+          "legacyId": "edinburgh_gb",
+          "name": "Edinburgh",
+          "slug": "edinburgh-united-kingdom",
+          "code": "EDI"
+         },
+         "country": {
+          "id": "Country:GB",
+          "code": "GB",
+          "name": "United Kingdom",
+          "slug": "united-kingdom"
+         }
+        },
+        "localTime": "2026-12-26T20:45:00",
+        "utcTime": "2026-12-26T20:45:00"
+       },
+       "carrier": {
+        "id": "Carrier:189",
+        "name": "Ryanair UK",
+        "slug": "ryanair-uk",
+        "code": "RK",
+        "icao": "RUK",
+        "alliance": null,
+        "website": "https://www.ryanair.com/",
+        "logo": null
+       },
+       "operatingCarrier": {
+        "id": "Carrier:189",
+        "name": "Ryanair UK",
+        "slug": "ryanair-uk",
+        "code": "RK",
+        "icao": "RUK",
+        "alliance": null,
+        "website": "https://www.ryanair.com/",
+        "logo": null
+       },
+       "hiddenDestination": null,
+       "throwawayDestination": null
+      },
+      "layover": null
+     }
+    ]
+   },
+   "inbound": {
+    "id": "Sector:0b81482ab2bc883140e30449012967bce92d4fd2~0b81482ab2bc883140e30449012967bce92d4fd2",
+    "duration": 3000,
+    "carriers": [
+     {
+      "id": "Carrier:189",
+      "name": "Ryanair UK",
+      "slug": "ryanair-uk",
+      "code": "RK",
+      "icao": "RUK",
+      "alliance": null,
+      "website": "https://www.ryanair.com/",
+      "logo": null
+     }
+    ],
+    "stopover": null,
+    "sectorSegments": [
+     {
+      "guarantee": null,
+      "segment": {
+       "id": "Segment:0b81482ab2bc883140e30449012967bce92d4fd2",
+       "code": "179",
+       "type": "FLIGHT",
+       "duration": 3000,
+       "cabinClass": "ECONOMY",
+       "followingTechnicalStop": false,
+       "source": {
+        "station": {
+         "id": "Station:airport:EDI",
+         "legacyId": "EDI",
+         "name": "Edinburgh Airport",
+         "slug": "edinburgh-edinburgh-united-kingdom",
+         "code": "EDI",
+         "type": "AIRPORT",
+         "timezone": "Europe/London",
+         "gps": {
+          "lat": 55.95,
+          "lng": -3.3725
+         },
+         "city": {
+          "id": "City:edinburgh_gb",
+          "legacyId": "edinburgh_gb",
+          "name": "Edinburgh",
+          "slug": "edinburgh-united-kingdom",
+          "code": "EDI"
+         },
+         "country": {
+          "id": "Country:GB",
+          "code": "GB",
+          "name": "United Kingdom",
+          "slug": "united-kingdom"
+         }
+        },
+        "localTime": "2027-01-01T16:10:00",
+        "utcTime": "2027-01-01T16:10:00"
+       },
+       "destination": {
+        "station": {
+         "id": "Station:airport:BFS",
+         "legacyId": "BFS",
+         "name": "Belfast International",
+         "slug": "belfast-international-belfast-united-kingdom",
+         "code": "BFS",
+         "type": "AIRPORT",
+         "timezone": "Europe/London",
+         "gps": {
+          "lat": 54.6575,
+          "lng": -6.2158333
+         },
+         "city": {
+          "id": "City:belfast_gb",
+          "legacyId": "belfast_gb",
+          "name": "Belfast",
+          "slug": "belfast-united-kingdom",
+          "code": "BFS"
+         },
+         "country": {
+          "id": "Country:GB",
+          "code": "GB",
+          "name": "United Kingdom",
+          "slug": "united-kingdom"
+         }
+        },
+        "localTime": "2027-01-01T17:00:00",
+        "utcTime": "2027-01-01T17:00:00"
+       },
+       "carrier": {
+        "id": "Carrier:189",
+        "name": "Ryanair UK",
+        "slug": "ryanair-uk",
+        "code": "RK",
+        "icao": "RUK",
+        "alliance": null,
+        "website": "https://www.ryanair.com/",
+        "logo": null
+       },
+       "operatingCarrier": {
+        "id": "Carrier:189",
+        "name": "Ryanair UK",
+        "slug": "ryanair-uk",
+        "code": "RK",
+        "icao": "RUK",
+        "alliance": null,
+        "website": "https://www.ryanair.com/",
+        "logo": null
+       },
+       "hiddenDestination": null,
+       "throwawayDestination": null
+      },
+      "layover": null
+     }
+    ]
+   },
+   "stopover": {
+    "nightsCount": 6,
+    "duration": 8365
+   }
+  }
+ ]
+}

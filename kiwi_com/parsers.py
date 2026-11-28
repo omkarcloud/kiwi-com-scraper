@@ -4,6 +4,9 @@ Fixtures (kiwi_com/fixtures/, captured 2026-11-07 through kiwi_com/fetch.py
 with the lean selections it sends):
   search_one_way_lon_nyc.json          onewayItineraries LON->NYC 2026-12-10, limit 5 (48 in the set)
   search_round_trip_lon_nyc.json       returnItineraries LON->NYC 12-10 / 12-17, limit 5
+  search_round_trip_bfs_edi.json       returnItineraries BFS->EDI 2026-12-26 / 2027-01-01, GBP, GB market,
+                                       sort price (2026-11-28): Jane's RK5968 / RK179 at £35, trimmed to
+                                       that itinerary and the metadata counts
   search_empty.json                    onewayItineraries on a past date: 200, 0 rows (the engine's "not found")
   details_one_way_shared.json          onewayItineraries + options.sharedItineraryId -> metadata.sharedItinerary
   details_round_trip_shared.json       the same for a return itinerary
@@ -33,7 +36,7 @@ for anything missing. `__typename`, tracking tokens, formatted price
 strings, Kiwi-internal flags (isVanilla, partnerships, searchFingerprint,
 serverToken) are dropped.
 """
-from kiwi_com.refs import booking_link
+from kiwi_com.refs import booking_link, share_link
 
 _STATION_TYPES = {"AIRPORT": "airport", "BUS_STATION": "bus_station", "TRAIN_STATION": "train_station"}
 _PLACE_TYPES = {
@@ -288,8 +291,45 @@ def _booking_options(options):
     return out
 
 
+# The itinerary's own cabin tokens (cabinClasses, lowercased), highest first.
+# First class is "first_class" there (live 2026-11-28, LON -> DXB first:
+# cabin_classes ["first_class"]), not the "first" our cabin_class param
+# takes: ranked as "first" it never matched, so a first-class itinerary's
+# share link carried no cabinClass and kiwi.com opened it in economy.
+_CABIN_RANK = ("first_class", "business", "premium_economy")
+
+
+def _share_link(record):
+    """kiwi.com's own link to this itinerary (refs.share_link): the
+    outbound's first and last city, its local departure dates, and the
+    locale / currency / passengers of its booking link. One-way and round
+    trip only (multi-city legs are one-way itineraries here); None when a
+    city or date is missing."""
+    trip = record.get("trip_type")
+    if trip not in ("one_way", "round_trip"):
+        return None
+    outbound, inbound = record.get("outbound") or {}, record.get("inbound") or {}
+
+    def city_id(stop):
+        return (((stop or {}).get("station") or {}).get("city") or {}).get("id")
+
+    def local_date(stop):
+        return _date((stop or {}).get("local_time"))
+
+    return_date = local_date(inbound.get("departure")) if trip == "round_trip" else None
+    if trip == "round_trip" and not return_date:
+        return None
+    cabins = record.get("cabin_classes") or []
+    cabin = next((c for c in _CABIN_RANK if c in cabins), None)
+    return share_link(record.get("id"), city_id(outbound.get("departure")), city_id(outbound.get("arrival")),
+                      local_date(outbound.get("departure")), return_date, record.get("booking_link"), cabin)
+
+
 def parse_itinerary(itinerary):
-    """One Itinerary (OneWay / Return / Multicity / Nomad) -> a flat record."""
+    """One Itinerary (OneWay / Return / Multicity / Nomad) -> a flat record.
+    booking_link opens kiwi.com's booking form until its token's session
+    expires; share_link opens the itinerary on kiwi.com while it is on sale
+    (refs.share_link has the 2026-11-28 measurements)."""
     if not isinstance(itinerary, dict):
         return None
     kind = itinerary.get("__typename") or ""
@@ -302,6 +342,7 @@ def parse_itinerary(itinerary):
         "trip_type": {"ItineraryOneWay": "one_way", "ItineraryReturn": "round_trip",
                       "ItineraryMulticity": "multi_city", "ItineraryNomad": "nomad"}.get(kind),
         "booking_link": options[0]["booking_link"] if options else None,
+        "share_link": None,
         "price": _money(itinerary.get("price")),
         "price_eur": _num((itinerary.get("priceEur") or {}).get("amount")),
         "fares": {
@@ -338,6 +379,7 @@ def parse_itinerary(itinerary):
         record["legs"] = sectors
     else:
         record["outbound"] = parse_sector(itinerary.get("sector"))
+    record["share_link"] = _share_link(record)
     return record
 
 

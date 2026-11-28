@@ -162,6 +162,9 @@ def test_details_schema():
     assert data["itinerary"] == SHARE and data["adults"] == 1 and data["cabin_class"] == "economy"
     link = f"https://www.kiwi.com/en/booking/?shareId={SHARE}"
     assert load(schemas.ItineraryDetailsSchema, itinerary=link)["itinerary"] == SHARE
+    share_link = ("https://www.kiwi.com/en/search/results/london_gb/new-york-city_ny_us/2026-12-10/no-return/"
+                  f"?sharedItineraryId={SHARE}&prebookingShared=1&currency=usd")
+    assert load(schemas.ItineraryDetailsSchema, itinerary=share_link)["itinerary"] == SHARE
     message = rejects(schemas.ItineraryDetailsSchema, "itinerary", itinerary="abc")
     assert "share id" in message[0]
     rejects(schemas.ItineraryDetailsSchema, "itinerary", itinerary="https://www.kiwi.com/en/booking/?token=x")
